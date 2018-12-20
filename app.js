@@ -2,11 +2,21 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-app.use('/', express.static(__dirname + '/'));
-
-app.get('/home', (req,res)=>{
-    res.sendFile(path.join(__dirname+'/ui/index.html'))
+app.get('/', (req,res)=>{
+    res.sendFile(path.join(__dirname+'/dist/index.html'));
 ;});
+
+app.get('/dist/bundle.js', (req,res)=>{
+    res.sendFile(path.join(__dirname+'/dist/bundle.js'));
+;});
+
+
+app.get('/bundle.js', (req,res)=>{
+    res.sendFile(path.join(__dirname+'/dist/bundle.js'));
+;});
+
+
+
 
 
 app.listen(3000);

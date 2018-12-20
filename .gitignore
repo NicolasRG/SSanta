@@ -1,2 +1,3 @@
 # excludes node modules
 /node_modules/*
+/.vscode/*
