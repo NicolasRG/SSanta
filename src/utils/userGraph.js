@@ -56,7 +56,6 @@ class userGraph{
 
     addEdgesToPerson(person, edge){
         const node = this.graph.getPerson(person);
-        node.add
     }
 
     toString(){

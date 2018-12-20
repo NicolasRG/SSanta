@@ -11,6 +11,10 @@ html body{
     width:100%;
 }
 
+#stepOneDiv{
+    overflow: auto;
+}
+
 .stepTwo{
      border: 1px solid #ff5e5e;
      flex-basis: 65%;
@@ -33,8 +37,8 @@ html body{
 }
 
 #emailLists{
-    flex-basis: 35%;
-    width: 100%
+    width: 100%;
+    overflow: auto;
 }
 
 #emailTable{
@@ -44,18 +48,22 @@ html body{
 #emailTableDiv{
    /*background: white;*/
     height: 70%;
+    overflow: auto;
 }
 
 .email_item{
-    flex-basis: 10.83%;
+    order: 0;
+    width: 17%;
+    height: 17%;
+    border: 2px solid white;
+    overflow: hidden;
 }
 
-#test{
-    border: 5px solid black;
-    background: black;
-}
 
 #emailRuleTable{ 
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
     
 }
 
