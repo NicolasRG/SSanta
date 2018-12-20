@@ -1,0 +1,26 @@
+{
+  "name": "secret-santa",
+  "version": "1.0.0",
+  "description": "Simple Secret Santa app using a hmailtonion circuit\\",
+  "main": "app.js",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^2.0.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --entry ./src/ui/js/index.js --output-filename ./dist/bundle.js --mode=development",
+    "build": "webpack --conifg webpack.config.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,68 @@
+html body{
+    background-color: #ff5e5e;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(255, 255, 255);
+    height: 95%;
+}
+
+#container{
+    display: flex;
+    height: 85%;
+    width:100%;
+}
+
+.stepTwo{
+     border: 1px solid #ff5e5e;
+     flex-basis: 65%;
+}
+
+.Hidden{
+    display: none;
+    top: 0%;
+    bottom: 0%;
+    margin: 0%;
+    max-width: 0;
+    max-height: 0; 
+}
+
+#emailsHeader{
+    font: 1.0em, sans-serif;  
+    border: 2px solid black;
+    background: rgb(185, 185, 185);
+    width: 100%;
+}
+
+#emailLists{
+    flex-basis: 35%;
+    width: 100%
+}
+
+#emailTable{
+    width: 100%;
+}
+
+#emailTableDiv{
+   /*background: white;*/
+    height: 70%;
+}
+
+.email_item{
+    flex-basis: 10.83%;
+}
+
+#test{
+    border: 5px solid black;
+    background: black;
+}
+
+#emailRuleTable{ 
+    
+}
+
+.emailTableItem{
+    border: 3px solid black;
+    background: rgb(247, 177, 177);
+    font-size: 1.0em;
+}
+
+
