@@ -19,6 +19,6 @@ app.get('/bundle.js', (req,res)=>{
 
 
 
-app.listen(3000);
+app.listen(80);
 
 console.log("Running at Port 3000");
