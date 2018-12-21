@@ -2,10 +2,12 @@
 require('../stylesheets/index.css');
 //import nescecary for general stuff
 const graph = require('./../../utils/userGraph.js');
+
 //grab html elements
 const emails = [];
 const ruleDivs = {};
-let acitveEmailIndex ;
+let acitveEmailIndex = null ;
+let activeEmailDiv = null ;
 const stepOneDiv = document.getElementById("stepOneDiv");
 const emailButton = document.getElementById('emailButton');
 const emailInput  = document.getElementById('emailInput');
@@ -51,7 +53,7 @@ const tableToStepTwo = ({...e})=>{
         const email = emails[i-1].email;
         temp.addEventListener("click", (e)=>{emailClick(e,i-1)});
         temp.className = "email_item";
-        temp.innerHTML = "<strong>"+ email +"</strong>";
+        temp.innerHTML = "<strong>"+ i+": "+email +"</strong>";
         temp.id = email+"_temp";
         e.div.appendChild(createEmailItem(email, i-1));
 
@@ -60,7 +62,7 @@ const tableToStepTwo = ({...e})=>{
     e.div.className = "stepTwo";
     e.header.innerHTML = "Step 2: Add Rules";
     //choose the first item in the table so it defaults to somthing
-    emailClick(null, 0);
+    emailClick(document.getElementById(emails[0].email+"_temp"), 0);
     createCircuitButton.className = "";
 
 }
@@ -89,17 +91,12 @@ const switchEmailItem = (div, index)=>{
     else if(div.active === true){
         div.active = false; 
         div.style = "opacity: .5;";
-
-
-       
-
         emails[acitveEmailIndex].exceptions.push(emails[index].email);
         console.log(emails[acitveEmailIndex]);
         
     }else{
         div.active = true;
         div.style = "opacity: 1;";
-
         const tempindex =   emails[acitveEmailIndex].exceptions.indexOf(emails[index].email);
         emails[acitveEmailIndex].exceptions.splice(tempindex, 1);
         console.log(emails[acitveEmailIndex]);
@@ -124,7 +121,7 @@ const emailEnter = (e)=>{
 const addTempEmail = (e)=>{
     console.log(emailInput.value);
     //If the email is unique add it, if not let the user now
-    if(!emails.includes(emailInput.value)){
+    if(!emails.includes(emailInput.value)){//fix this later
         emails.push({email:emailInput.value, 
                      exceptions : [] });
         const row = emailTable.insertRow(-1);
@@ -140,12 +137,18 @@ const addTempEmail = (e)=>{
 
 //Step 2 changes active user connectinone being made
 const emailClick = (e, emailIndex)=>{
-    console.log(emails[emailIndex],  "here");
+    //change the old and new clicked new email div
+    if(activeEmailDiv !== null ){
+        activeEmailDiv.style = "";
+        activeEmailDiv = e.srcElement;
+        }
+     else{
+        activeEmailDiv = e;
+     }   
+    activeEmailDiv.style = "background: green;";
     acitveEmailIndex = emailIndex;
 //grab the current
-    const email =  emails[emailIndex];
     updateEmailRuleTale();
-    
 }
 
 /*
@@ -157,7 +160,6 @@ const updateEmailRuleTale = ()=>{
     const excpetions = emails[acitveEmailIndex].exceptions;
 
     Object.keys(ruleDivs).forEach(element => {
-        //console.log(ruleDivs[element], element);
         const div = ruleDivs[element];
         if(element == emails[acitveEmailIndex].email){//cannot choose it self
             div.style = 'opacity: 0.5; background: grey;';
@@ -176,6 +178,48 @@ const updateEmailRuleTale = ()=>{
 
 const createCircuitButtonEvent = ()=>{
     console.log(emails);
-    alert("clicked finallized");
-
+    //alert("clicked finallized");
+    addPeopleGraph();
 }
+
+const addPeopleGraph = () =>{
+    //create the array 
+    const circuit = new graph();
+    //create a base array
+    const base = [];
+    emails.forEach((d,i)=>{
+        base.push(d.email);
+    });
+    console.log(base);
+    //loop through the array and add them to the graph
+    emails.forEach((element, index)=>{
+        //cant have nodes pointing back on themselves
+        element.exceptions.push(element.email);
+        //create the oppoiste of the ecxceptions
+        const exceptions = element.exceptions;
+        const list = base.filter((d,i)=>{
+            return !exceptions.includes(d);
+        });
+
+        // create the array that is the oppposie to
+           console.log(element, list); 
+        //add the person to the graph
+        circuit.addPerson(
+            list,
+            element.email,
+            element.email,
+            );
+        });
+        let solved = null;
+        console.log(solved = circuit.findPattern());
+        if(solved === false){
+            alert("No Problem Solved");
+            return
+        }
+        //parse to put into an alert box
+        let str = "";
+        solved.list.forEach(d=>{
+            str = str+"{"+d+"}";
+        });
+        alert(str);
+    }

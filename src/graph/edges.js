@@ -13,7 +13,7 @@ class Edges{
     }
 
     toString(){
-        return "wtdfa";
+        return this.list ;
     }
 
 }

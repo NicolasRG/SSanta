@@ -45,7 +45,7 @@ function graphTraversal(graph, succeded, index,){//the graph, list : list of suc
     returns : array of an array of node to node edges : if its a possible option
 */
 function possibleOption(person, succeded, glength){
-    
+    console.log(person);
     const options = person.getEdges().getList();
     const nodeEmail = person.getEmail();
     const possible = [];
