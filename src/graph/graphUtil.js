@@ -8,30 +8,33 @@ function graphTraversal(graph, succeded, index,){//the graph, list : list of suc
     //check to see if there is a possible move left
     const next = possibleOption(index, succeded, graph.getLength());
     if(next.length < 1){
+        console.log(index,  ": does not a possible list of locatinos", succeded);
         return null;//not an option
     }
     //test the varaious options
     for(let i =0; i<next.length ;i++){
         
         const temp = next[i][1];
+        console.log("pushing: ", next[i]);
         succeded.push(next[i]);
         
        
         //test to see if its the end here
         if(succeded.length === graph.getLength()){
-            //console.log(succeded, "at first local check");
+            console.log(succeded, "at first local check");
             return succeded //we're done
         }
      
         const result = graphTraversal(graph, succeded, graph.getPerson(temp));
-
+        console.log("beofre going to check", succeded);
         if(result !== null){
-            //console.log(result, "at second local check at ", temp);
+            console.log(result, "Got", next[i]);
                 return result
         }else{
-            //console.log(next[i], "did not work", succeded)
+            console.log(next[i], "did not work", succeded)
             succeded = succeded.slice(0,-1); //this breaks it :/
-            //console.log(next[i], "did not work", succeded)
+            console.log(next[i], "this is the new arrray", succeded)
+            sleep(1000);
         }
 
     }
@@ -45,12 +48,11 @@ function graphTraversal(graph, succeded, index,){//the graph, list : list of suc
     returns : array of an array of node to node edges : if its a possible option
 */
 function possibleOption(person, succeded, glength){
-    console.log(person);
+    console.log(person, "wgere the fuck s this ");
     const options = person.getEdges().getList();
     const nodeEmail = person.getEmail();
     const possible = [];
     for(let i = 0; i < options.length; i++){
-        //console.log(options[i]);
         
         let index = false;
 
@@ -75,7 +77,16 @@ function possibleOption(person, succeded, glength){
     }
     //console.log(possible);//,"succeded:" ,succeded," options: " , options);
     return possible;
-
 }
+
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
+  }
+
 
 module.exports = graphTraversal;

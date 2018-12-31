@@ -62,8 +62,10 @@ const tableToStepTwo = ({...e})=>{
     e.div.className = "stepTwo";
     e.header.innerHTML = "Step 2: Add Rules";
     //choose the first item in the table so it defaults to somthing
-    emailClick(document.getElementById(emails[0].email+"_temp"), 0);
     createCircuitButton.className = "";
+    if(emails[0].email === null){return}
+    emailClick(document.getElementById(emails[0].email+"_temp"), 0);
+
 
 }
 
@@ -121,7 +123,7 @@ const emailEnter = (e)=>{
 const addTempEmail = (e)=>{
     console.log(emailInput.value);
     //If the email is unique add it, if not let the user now
-    if(!emails.includes(emailInput.value)){//fix this later
+    if(!containsInEmail(emailInput.value)){//fix this later
         emails.push({email:emailInput.value, 
                      exceptions : [] });
         const row = emailTable.insertRow(-1);
@@ -187,6 +189,7 @@ const addPeopleGraph = () =>{
     const circuit = new graph();
     //create a base array
     const base = [];
+    /*
     emails.forEach((d,i)=>{
         base.push(d.email);
     });
@@ -209,17 +212,73 @@ const addPeopleGraph = () =>{
             element.email,
             element.email,
             );
-        });
-        let solved = null;
-        console.log(solved = circuit.findPattern());
-        if(solved === false){
-            alert("No Problem Solved");
-            return
-        }
+    });
+    */
+    circuit.addPerson(
+        ["Nick", "Megan", "Tyler", "Brain", "Christy"],
+        "Lina",
+        "Lina"
+    );
+    
+    circuit.addPerson(
+        ["Lina", "Megan", "Tyler", "Brain", "Christy", "Me"],
+        "Nick",
+        "Nick"
+    );
+    
+    circuit.addPerson(
+        ["Lina","Nick", "Tyler", "Christy", "Me"],
+        "Megan",
+        "Megan"
+    );
+    
+    circuit.addPerson(
+        ["Lina", "Nick", "Megan", "Brain", "Me"],
+        "Tyler",
+        "Tyler"
+    );
+    
+    circuit.addPerson(
+        ["Lina", "Nick", "Tyler", "Christy", "Me"],
+        "Brain",
+        "Brain"
+    );
+    
+    circuit.addPerson(
+        ["Lina", "Nick", "Megan", "Brain", "Me"],
+        "Christy",
+        "Christy"
+    );
+    
+    circuit.addPerson(
+        ["Nick", "Megan", "Tyler", "Brain", "Christy"],
+        "Me",
+        "Me"
+    );
+    
+
+
+    let solved = null;
+    console.log(solved = circuit.findPattern());
+    if(solved === false){
+        alert("No Problem Solved");
+        return
+    }
         //parse to put into an alert box
-        let str = "";
-        solved.list.forEach(d=>{
-            str = str+"{"+d+"}";
-        });
-        alert(str);
+    let str = "";
+    solved.list.forEach(d=>{
+        str = str+"{"+d+"}";
+    });
+    alert(str);
+}
+
+
+    const containsInEmail =(name)=>{
+        let bool = false;
+        for(let i=0; i<emails.length; i++){
+            if(name === emails[i].email){
+                return true
+            }
+        }
+        return false
     }
