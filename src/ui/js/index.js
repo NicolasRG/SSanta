@@ -189,7 +189,7 @@ const addPeopleGraph = () =>{
     const circuit = new graph();
     //create a base array
     const base = [];
-    /*
+    
     emails.forEach((d,i)=>{
         base.push(d.email);
     });
@@ -213,48 +213,6 @@ const addPeopleGraph = () =>{
             element.email,
             );
     });
-    */
-    circuit.addPerson(
-        ["Nick", "Megan", "Tyler", "Brain", "Christy"],
-        "Lina",
-        "Lina"
-    );
-    
-    circuit.addPerson(
-        ["Lina", "Megan", "Tyler", "Brain", "Christy", "Me"],
-        "Nick",
-        "Nick"
-    );
-    
-    circuit.addPerson(
-        ["Lina","Nick", "Tyler", "Christy", "Me"],
-        "Megan",
-        "Megan"
-    );
-    
-    circuit.addPerson(
-        ["Lina", "Nick", "Megan", "Brain", "Me"],
-        "Tyler",
-        "Tyler"
-    );
-    
-    circuit.addPerson(
-        ["Lina", "Nick", "Tyler", "Christy", "Me"],
-        "Brain",
-        "Brain"
-    );
-    
-    circuit.addPerson(
-        ["Lina", "Nick", "Megan", "Brain", "Me"],
-        "Christy",
-        "Christy"
-    );
-    
-    circuit.addPerson(
-        ["Nick", "Megan", "Tyler", "Brain", "Christy"],
-        "Me",
-        "Me"
-    );
     
 
 

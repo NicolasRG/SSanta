@@ -8,33 +8,32 @@ function graphTraversal(graph, succeded, index,){//the graph, list : list of suc
     //check to see if there is a possible move left
     const next = possibleOption(index, succeded, graph.getLength());
     if(next.length < 1){
-        console.log(index,  ": does not a possible list of locatinos", succeded);
+        //console.log(index,  ": does not have a possible list of locations", succeded);
         return null;//not an option
     }
     //test the varaious options
     for(let i =0; i<next.length ;i++){
         
         const temp = next[i][1];
-        console.log("pushing: ", next[i]);
+        //console.log("pushing: ", next[i]);
         succeded.push(next[i]);
         
        
         //test to see if its the end here
         if(succeded.length === graph.getLength()){
-            console.log(succeded, "at first local check");
+            //console.log(succeded, "at first local check");
             return succeded //we're done
         }
      
-        const result = graphTraversal(graph, succeded, graph.getPerson(temp));
+        const result = graphTraversal(graph, succeded.slice(), graph.getPerson(temp));
         console.log("beofre going to check", succeded);
         if(result !== null){
-            console.log(result, "Got", next[i]);
+            //console.log(result, "Got", next[i]);
                 return result
         }else{
-            console.log(next[i], "did not work", succeded)
-            succeded = succeded.slice(0,-1); //this breaks it :/
-            console.log(next[i], "this is the new arrray", succeded)
-            sleep(1000);
+            //console.log(next[i], "did not work", succeded)
+            succeded = succeded.slice(0,-1); //removes last edge that was not correct
+            //console.log(next[i], "this is the new arrray", succeded)
         }
 
     }
@@ -48,7 +47,7 @@ function graphTraversal(graph, succeded, index,){//the graph, list : list of suc
     returns : array of an array of node to node edges : if its a possible option
 */
 function possibleOption(person, succeded, glength){
-    console.log(person, "wgere the fuck s this ");
+    //console.log(person, ": creating list of remaining possibile edges for this node");
     const options = person.getEdges().getList();
     const nodeEmail = person.getEmail();
     const possible = [];
@@ -78,10 +77,12 @@ function possibleOption(person, succeded, glength){
     //console.log(possible);//,"succeded:" ,succeded," options: " , options);
     return possible;
 }
-
+/*
+used for debugging
+*/
 function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
+    let start = new Date().getTime();
+    for (let i = 0; i < 1e7; i++) {
       if ((new Date().getTime() - start) > milliseconds){
         break;
       }
