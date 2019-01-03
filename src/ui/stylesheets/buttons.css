@@ -1,0 +1,43 @@
+button{
+    display: inline-block;
+    background-color: rgb(153, 224, 153);
+    border-radius: 2px 2px 2px 2px;
+    border:rgba(0, 0, 0, 0) 1px solid;
+    transition-property: all;
+    transition-duration: .25s, .5s;
+    /*transition-delay: 2s;*/
+    transition-timing-function: ease-in-out;
+    /*animation-name: myanimations;
+    animation-duration: 10s;
+    animation-direction: alternate;
+    animation-delay: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;*/
+}
+
+button:hover{
+    background-color: rgb(247, 177, 177);
+    border-radius: 0px 0px 0px 0px;
+}
+
+
+#addNodesToDivTransistion{
+    position: absolute;
+    right: 0px;
+}
+
+
+
+@keyframes myanimations{
+        0%{background-color: rgb(153, 224, 153);  
+        }
+        25%{background-color: #c4a17a; 
+        }
+        50%{background-color: grey; 
+        }
+        75%{background-color: rgb(119, 145, 194); 
+        }
+        100%{background-color: rgb(153, 224, 153);  
+        }
+}

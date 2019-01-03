@@ -1,23 +1,23 @@
 <head>
 </head>
 <body>
-    <h1 id="pageHeader"> Step 1: Add Nodes/Emails</h1>
+    <h1 id="pageHeader"> Step 1: Add Nodes</h1>
     <div id = "container">
         <div id="emailLists">
             <div id= "stepOneDiv" class = "stepOneDiv"> 
                     <div id ="emailForm" >
-                        Node:<br>
-                        <input type="text" name = "Node" id = "emailInput">
                         <br>
+                        Node:
+                        <input type="text" name = "Node" id = "emailInput">
+                        
                         <button id = "emailButton" type="button">
-                            Submit Email
+                            Add Node
                         </button>
                     </div>
-            </div>    
-                
+            </div>   
             <div id="emailTableDiv">
                     <table id="emailTable">
-                        <th id="emailsHeader"> List of Emails </th>
+                        <th id="emailsHeader">List of Nodes</th>
                     </table>
                     
                 </div>
@@ -30,11 +30,12 @@
             
         </div>           
     </div>
-    <button id="addNodesToDivTransistion" type="button">
+    <div id="buttonFooter">
+        <button id="addNodesToDivTransistion" type="button">
             Go To Step 2
         </button>
 
         <button id= "createCircuitButton" class= hidden> Create Path/List</button>
-
+    </div>    
     <script src="bundle.js"> </script>
 </body>

@@ -1,5 +1,7 @@
 //import all of the css here
 require('../stylesheets/index.css');
+require('../stylesheets/buttons.css');
+require('../stylesheets/edgeOptions.css');
 //import nescecary for general stuff
 const graph = require('./../../utils/userGraph.js');
 
@@ -52,8 +54,6 @@ const tableToStepTwo = ({...e})=>{
         const temp = row.cells[0];
         const email = emails[i-1].email;
         temp.addEventListener("click", (e)=>{emailClick(e,i-1)});
-        temp.className = "email_item";
-        temp.innerHTML = "<strong>"+ i+": "+email +"</strong>";
         temp.id = email+"_temp";
         e.div.appendChild(createEmailItem(email, i-1));
 
